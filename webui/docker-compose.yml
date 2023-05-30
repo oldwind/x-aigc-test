@@ -1,0 +1,27 @@
+version: '3'
+services:
+  webui-master: 
+    image: compile-python-v2
+    container_name: webui-master
+    environment:
+      - TZ="Asia/Shanghai"
+      - APPNAME=webui
+    ports:     # 端口号绑定（宿主机:容器内）
+      - '80:80'
+    tty: true
+    privileged: true
+    stdin_open: true
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    networks:
+      - webui
+      
+networks:
+  server:
+    driver:
+      bridge
