@@ -22,6 +22,6 @@ services:
       - webui
       
 networks:
-  server:
+  webui:
     driver:
       bridge
